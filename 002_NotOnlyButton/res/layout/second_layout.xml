@@ -5,6 +5,12 @@
     android:orientation="vertical" >
 
     <Button
+        android:id="@+id/button_second_activity_read_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ReadExtraData" />
+
+    <Button
         android:id="@+id/button_second_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

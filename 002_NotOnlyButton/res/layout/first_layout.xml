@@ -23,6 +23,24 @@
         android:text="GoToInternet" />
 
     <Button
+        android:id="@+id/button_first_activity_dial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dial" />
+
+    <Button
+        android:id="@+id/button_first_activity_extra_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IntentExtraData" />
+
+    <Button
+        android:id="@+id/button_first_activity_intent_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IntentWithResult" />
+
+    <Button
         android:id="@+id/button_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

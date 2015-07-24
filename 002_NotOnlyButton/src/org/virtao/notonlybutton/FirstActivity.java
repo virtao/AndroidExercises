@@ -1,9 +1,11 @@
 package org.virtao.notonlybutton;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -45,10 +47,10 @@ public class FirstActivity extends Activity {
 			public void onClick(View v) {
 				Intent intent;
 				if (Math.random() > 0.5) {
-					// œ‘ ΩIntent
+					// ÊòæÂºèIntent
 					intent = new Intent(FirstActivity.this, SecondActivity.class);
 				} else {
-					// “˛ ΩIntent
+					// ÈöêÂºèIntent
 					intent = new Intent("org.virtao.notonlybutton.ACTION_START");
 					intent.addCategory("org.virtao.notonlybutton.MY_CATEGORY");
 				}
@@ -64,6 +66,46 @@ public class FirstActivity extends Activity {
 				Intent intent = new Intent(Intent.ACTION_VIEW);
 				intent.setData(Uri.parse("http://cn.bing.com"));
 				startActivity(intent);
+			}
+			
+		});
+		
+		Button buttonDial = (Button)this.findViewById(R.id.button_first_activity_dial);
+		buttonDial.setOnClickListener(new OnClickListener () {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Intent.ACTION_DIAL);
+				intent.setData(Uri.parse("tel:10086"));
+				try {
+					startActivity(intent);
+				} catch (ActivityNotFoundException e) {
+					Log.e(GlobalVar.TAG, "Dial failed!");
+				}
+			}
+			
+		});
+		
+		Button buttonExtraData = (Button)this.findViewById(R.id.button_first_activity_extra_data);
+		buttonExtraData.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				String data = "Hello! I comes from FirstActivity.";
+				Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+				intent.putExtra("extra_data", data);
+				startActivity(intent);
+			}
+			
+		});
+		
+		Button buttonIntentResult = (Button)this.findViewById(R.id.button_first_activity_intent_result);
+		buttonIntentResult.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+				startActivityForResult(intent, 10086);
 			}
 			
 		});
@@ -89,4 +131,18 @@ public class FirstActivity extends Activity {
 		this.getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch (requestCode) {
+		case 10086:
+			if	(resultCode == RESULT_OK) {
+				String returnData = data.getStringExtra("data_return");
+				Toast.makeText(this, "The result : " + returnData, Toast.LENGTH_SHORT).show();
+			}
+			break;
+		}
+	}
+	
+	
 }
