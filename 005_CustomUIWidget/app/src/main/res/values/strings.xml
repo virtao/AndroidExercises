@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UIWidgets</string>
+    <string name="app_name">CustomUIWidgets</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

@@ -1,9 +1,14 @@
-package org.virtao.uiwidgets;
+package org.virtao.customuiwidget;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import org.virtao.customuiwidget.widgets.TitleLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -11,6 +16,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TitleLayout title = (TitleLayout) this.findViewById(R.id.main_activity_title);
+        title.setBackButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Back button clicked.", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        title.setEditButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Button btn = (Button) v;
+                Toast.makeText(MainActivity.this, btn.getText() + " button clicked.", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
